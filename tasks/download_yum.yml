@@ -1,7 +1,7 @@
 ---
 - name: "Download Filebeat's rpm"
   get_url:
-    url: "https://artifacts.filebeat.co/downloads/filebeat/filebeat-{{ filebeat_version }}-x86_64.rpm"
+    url: "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{{ filebeat_version }}-x86_64.rpm"
     dest: "files/filebeat-{{ filebeat_version }}-x86_64.rpm"
     validate_certs: false
   register: download_filebeat

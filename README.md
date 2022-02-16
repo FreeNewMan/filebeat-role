@@ -1,38 +1,29 @@
-Role Name
+Filebeat
 =========
 
-A brief description of the role goes here.
+Эта роль устанавливает Filebeat  на указанные в Inventory хосты.
 
-Requirements
+Зависимости
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Перед установкой Filebeat требуется установить Elasticsearch и Kibana, т.к. в шаблоне настройки сервиса прописывается IP хостов где установлены Elasticsearch и Kibana.
 
-Role Variables
+Настройка значений переменных
 --------------
+В файле default/main.yml указывается версия Kibana (filebeat_version) а также прописывается тип установки filebeat_install_type. Этой переменной регулируется нужно ли скачивать дистрибутив. Если да, то нужно указать remote, если нет, то другое значение, но при этом нужно будет скачать файл в каталог /files.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+В основном плейбуке хосты Elasticserach должны быть в группе с названием el-instance, а хосты Kibana в kib-instance, иначе нужно будет изменить шаблон в /templates/filebeat.yml.j2
 
-Dependencies
-------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
+Пример Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+    - name: Install Filebeat
+      hosts: filebeat
+        roles:
+        - filebeat_role
 
 License
 -------
 
 BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).

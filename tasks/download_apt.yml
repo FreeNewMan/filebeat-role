@@ -1,7 +1,7 @@
 ---
 - name: "Download Filebeat's deb"
   get_url:
-    url: "https://artifacts.filebeat.co/downloads/filebeat/filebeat-{{ filebeat_version }}-amd64.deb"
+    url: "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{{ filebeat_version }}-amd64.deb"
     dest: "files/filebeat-{{ filebeat_version }}-amd64.deb"
     validate_certs: false
   delegate_to: localhost
